@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yibai.plan.warehousing.dao.mapper.YibaiOverseaSummaryMapperExt">
+
+
+    <resultMap id="BaseResultMap" type="com.yibai.plan.warehousing.dao.entity.YibaiOverseaSummary"
+               extends="com.yibai.plan.warehousing.dao.mapper.YibaiOverseaSummaryMapper.BaseResultMap"></resultMap>
+
+    <sql id="Base_Column_List">
+        <include refid="com.yibai.plan.warehousing.dao.mapper.YibaiOverseaSummaryMapper.Base_Column_List"></include>
+    </sql>
+
+    <select id="queryOverseaSummaryList" resultType="com.yibai.plan.warehousing.dao.entity.YibaiOverseaSummary">
+        select s.gid gid,
+        s.earliest_exhaust_date earliestExhaustDate,
+        s.sku sku,
+        s.sku_name skuName,
+        s.total_required_qty totalRequiredQty,
+        s.created_at createAt,
+        s.updated_at updateAt
+        from yibai_oversea_summary  s
+        <include refid="QueryList"/>
+    </select>
+    <sql id="QueryList">
+        <where>
+            <if test="gid != null and gid != ''">
+                AND s.gid = #{gid}
+            </if>
+
+            <if test="sku != null and sku != ''">
+                AND s.sku = #{sku}
+            </if>
+            <if test="beginEarlistExhaustDate != null and endEarlistExhaustDate != null">
+                AND s.earliest_exhaust_date <![CDATA[>=]]> #{beginEarlistExhaustDate,jdbcType=DATE}
+                <![CDATA[<=]]> #{earliestExhaustDate,jdbcType=DATE}
+            </if>
+            <if test="beginCreateAt != null and endCreateAt !=null ">
+                AND s.created_at <![CDATA[>=]]> #{beginCreateAt,jdbcType=DATE}
+                <![CDATA[<=]]> #{endCreateAt,jdbcType=DATE}
+            </if>
+        </where>
+    </sql>
+    <insert id="addOverseaSummary" parameterType="com.yibai.plan.warehousing.dao.entity.YibaiOverseaSummary" useGeneratedKeys="true" keyProperty="gid">
+           insert into
+           yibai_oversea_summary(
+                              sku,
+                              sku_name,
+                              total_required_qty,
+                              created_at,
+                              updated_at,
+                              earliest_exhaust_date
+                              )
+                              values(
+                              #{sku},
+                              #{skuName},
+                              #{totalRequiredQty},
+                              NOW(),
+                              NOW(),
+                              NOW())
+    </insert>
+</mapper>

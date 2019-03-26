@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yibai.plan.warehousing.dao.mapper.YibaiOverseaSummaryMapper">
+  <resultMap id="BaseResultMap" type="com.yibai.plan.warehousing.dao.entity.YibaiOverseaSummary">
+    <id column="gid" jdbcType="VARCHAR" property="gid" />
+    <result column="sku" jdbcType="VARCHAR" property="sku" />
+    <result column="sku_name" jdbcType="VARCHAR" property="skuName" />
+    <result column="total_required_qty" jdbcType="INTEGER" property="totalRequiredQty" />
+    <result column="earliest_exhaust_date" jdbcType="DATE" property="earliestExhaustDate" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    gid, sku, sku_name, total_required_qty, earliest_exhaust_date, remark, created_at, 
+    updated_at
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from yibai_oversea_summary
+    where gid = #{gid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from yibai_oversea_summary
+    where gid = #{gid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yibai.plan.warehousing.dao.entity.YibaiOverseaSummary">
+    insert into yibai_oversea_summary (gid, sku, sku_name, 
+      total_required_qty, earliest_exhaust_date, remark, 
+      created_at, updated_at)
+    values (#{gid,jdbcType=VARCHAR}, #{sku,jdbcType=VARCHAR}, #{skuName,jdbcType=VARCHAR}, 
+      #{totalRequiredQty,jdbcType=INTEGER}, #{earliestExhaustDate,jdbcType=DATE}, #{remark,jdbcType=VARCHAR}, 
+      #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yibai.plan.warehousing.dao.entity.YibaiOverseaSummary">
+    insert into yibai_oversea_summary
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gid != null">
+        gid,
+      </if>
+      <if test="sku != null">
+        sku,
+      </if>
+      <if test="skuName != null">
+        sku_name,
+      </if>
+      <if test="totalRequiredQty != null">
+        total_required_qty,
+      </if>
+      <if test="earliestExhaustDate != null">
+        earliest_exhaust_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gid != null">
+        #{gid,jdbcType=VARCHAR},
+      </if>
+      <if test="sku != null">
+        #{sku,jdbcType=VARCHAR},
+      </if>
+      <if test="skuName != null">
+        #{skuName,jdbcType=VARCHAR},
+      </if>
+      <if test="totalRequiredQty != null">
+        #{totalRequiredQty,jdbcType=INTEGER},
+      </if>
+      <if test="earliestExhaustDate != null">
+        #{earliestExhaustDate,jdbcType=DATE},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yibai.plan.warehousing.dao.entity.YibaiOverseaSummary">
+    update yibai_oversea_summary
+    <set>
+      <if test="sku != null">
+        sku = #{sku,jdbcType=VARCHAR},
+      </if>
+      <if test="skuName != null">
+        sku_name = #{skuName,jdbcType=VARCHAR},
+      </if>
+      <if test="totalRequiredQty != null">
+        total_required_qty = #{totalRequiredQty,jdbcType=INTEGER},
+      </if>
+      <if test="earliestExhaustDate != null">
+        earliest_exhaust_date = #{earliestExhaustDate,jdbcType=DATE},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where gid = #{gid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yibai.plan.warehousing.dao.entity.YibaiOverseaSummary">
+    update yibai_oversea_summary
+    set sku = #{sku,jdbcType=VARCHAR},
+      sku_name = #{skuName,jdbcType=VARCHAR},
+      total_required_qty = #{totalRequiredQty,jdbcType=INTEGER},
+      earliest_exhaust_date = #{earliestExhaustDate,jdbcType=DATE},
+      remark = #{remark,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP}
+    where gid = #{gid,jdbcType=VARCHAR}
+  </update>
+</mapper>

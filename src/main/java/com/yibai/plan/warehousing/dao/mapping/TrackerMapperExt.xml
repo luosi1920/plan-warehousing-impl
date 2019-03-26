@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yibai.plan.warehousing.dao.mapper.TrackerMapperExt">
+
+
+    <resultMap id="BaseResultMap" type="com.yibai.plan.warehousing.dao.entity.Tracker" extends="com.yibai.plan.warehousing.dao.mapper.TrackerMapper.BaseResultMap"></resultMap>
+
+
+    <sql id="Base_Column_List" >
+        <include refid="com.yibai.plan.warehousing.dao.mapper.TrackerMapper.Base_Column_List"></include>
+    </sql>
+    <!-- 查询所有的需求跟踪列表 -->
+    <select id="selectList" parameterType="com.yibai.plan.warehousing.dto.request.TrackerQueryDTO" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from yibai_oversea_pr_track
+        <where>
+            <if test="expectExhaustDateBegin!=null and expectExhaustDateEnd!=null">
+                expect_exhaust_date   between #{expectExhaustDateBegin,jdbcType=DATE} and #{expectExhaustDateEnd,jdbcType=DATE}
+            </if>
+            <if test="expectExhaustDateEnd==null and expectExhaustDateBegin!=null">
+                and  expect_exhaust_date>=#{expectExhaustDateBegin,jdbcType=DATE}
+            </if>
+            <if test="expectExhaustDateBegin==null and expectExhaustDateEnd!=null">
+                and  expect_exhaust_date &lt;= #{expectExhaustDateEnd,jdbcType=DATE}
+            </if>
+            <if test="ecreatedAtBegin!=null and createdAtEnd!=null">
+                and  Date(created_at)   between #{ecreatedAtBegin,jdbcType=DATE} and #{createdAtEnd,jdbcType=DATE}
+            </if>
+            <if test="ecreatedAtBegin!=null and createdAtEnd==null">
+                and  Date(created_at)  >= #{ecreatedAtBegin,jdbcType=DATE}
+            </if>
+            <if test="ecreatedAtBegin==null and createdAtEnd!=null">
+                and  Date(created_at)  &lt;= #{ecreatedAtBegin,jdbcType=DATE}
+            </if>
+            <if test="prSn!=null">and pr_sn=#{prSn,jdbcType=CHAR}</if>
+            <if test="sku!=null">and sku=#{sku,jdbcType=VARCHAR}</if>
+            <if test="purSn!=null">and pur_sn=#{purSn,jdbcType=CHAR}</if>
+            <if test="purState!=null"> and pur_state=#{purState,jdbcType=TINYINT}</if>
+            <if test="stationCode!=null">and station_code=#{stationCode,jdbcType=VARCHAR}</if>
+        </where>
+        limit #{start,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
+    </select>
+
+    <!-- 查询需求跟踪列表总记录数 -->
+    <select id="selectListTotal" parameterType="com.yibai.plan.warehousing.dto.request.TrackerQueryDTO" resultType="java.lang.Integer">
+        select
+        count(gid)
+        from yibai_oversea_pr_track
+        <where>
+            <if test="expectExhaustDateBegin!=null and expectExhaustDateEnd!=null">
+                expect_exhaust_date   between #{expectExhaustDateBegin,jdbcType=DATE} and #{expectExhaustDateEnd,jdbcType=DATE}
+            </if>
+            <if test="expectExhaustDateEnd==null and expectExhaustDateBegin!=null">
+                and  expect_exhaust_date>=#{expectExhaustDateBegin,jdbcType=DATE}
+            </if>
+            <if test="expectExhaustDateBegin==null and expectExhaustDateEnd!=null">
+                and  expect_exhaust_date &lt;= #{expectExhaustDateEnd,jdbcType=DATE}
+            </if>
+            <if test="ecreatedAtBegin!=null and createdAtEnd!=null">
+                and  Date(created_at)   between #{ecreatedAtBegin,jdbcType=DATE} and #{createdAtEnd,jdbcType=DATE}
+            </if>
+            <if test="ecreatedAtBegin!=null and createdAtEnd==null">
+                and  Date(created_at)  >= #{ecreatedAtBegin,jdbcType=DATE}
+            </if>
+            <if test="ecreatedAtBegin==null and createdAtEnd!=null">
+                and  Date(created_at)  &lt;= #{ecreatedAtBegin,jdbcType=DATE}
+            </if>
+            <if test="prSn!=null">and pr_sn=#{prSn,jdbcType=CHAR}</if>
+            <if test="sku!=null">and sku=#{sku,jdbcType=VARCHAR}</if>
+            <if test="purSn!=null">and pur_sn=#{purSn,jdbcType=CHAR}</if>
+            <if test="purState!=null"> and pur_state=#{purState,jdbcType=TINYINT}</if>
+            <if test="stationCode!=null">and station_code=#{stationCode,jdbcType=VARCHAR}</if>
+        </where>
+    </select>
+
+
+    <select id="selectOne" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from yibai_oversea_pr_track
+        <where>
+            <if test="prSn!=null">
+                pr_sn = #{prSn,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+
+</mapper>

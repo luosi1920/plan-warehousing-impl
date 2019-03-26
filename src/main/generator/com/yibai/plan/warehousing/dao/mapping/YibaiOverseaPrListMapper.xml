@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yibai.plan.warehousing.dao.mapper.YibaiOverseaPrListMapper">
+  <resultMap id="BaseResultMap" type="com.yibai.plan.warehousing.dao.entity.YibaiOverseaPrList">
+    <id column="gid" jdbcType="VARCHAR" property="gid" />
+    <result column="jid" jdbcType="VARCHAR" property="jid" />
+    <result column="pr_sn" jdbcType="CHAR" property="prSn" />
+    <result column="salesman" jdbcType="INTEGER" property="salesman" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="sku" jdbcType="VARCHAR" property="sku" />
+    <result column="station_code" jdbcType="VARCHAR" property="stationCode" />
+    <result column="sku_name" jdbcType="VARCHAR" property="skuName" />
+    <result column="sku_state" jdbcType="TINYINT" property="skuState" />
+    <result column="logistics_id" jdbcType="TINYINT" property="logisticsId" />
+    <result column="available_qty" jdbcType="INTEGER" property="availableQty" />
+    <result column="oversea_up_qty" jdbcType="INTEGER" property="overseaUpQty" />
+    <result column="oversea_ship_qty" jdbcType="INTEGER" property="overseaShipQty" />
+    <result column="sc_day" jdbcType="SMALLINT" property="scDay" />
+    <result column="deviate_pcs" jdbcType="DECIMAL" property="deviatePcs" />
+    <result column="avg_weight_sale_pcs" jdbcType="SMALLINT" property="avgWeightSalePcs" />
+    <result column="avg_deliver_day" jdbcType="DECIMAL" property="avgDeliverDay" />
+    <result column="z" jdbcType="DECIMAL" property="z" />
+    <result column="safe_stock_pcs" jdbcType="SMALLINT" property="safeStockPcs" />
+    <result column="weight_sale_pcs" jdbcType="SMALLINT" property="weightSalePcs" />
+    <result column="pre_day" jdbcType="SMALLINT" property="preDay" />
+    <result column="point_pcs" jdbcType="SMALLINT" property="pointPcs" />
+    <result column="supply_day" jdbcType="SMALLINT" property="supplyDay" />
+    <result column="purchase_qty" jdbcType="INTEGER" property="purchaseQty" />
+    <result column="expect_exhaust_date" jdbcType="DATE" property="expectExhaustDate" />
+    <result column="bd" jdbcType="SMALLINT" property="bd" />
+    <result column="require_qty" jdbcType="INTEGER" property="requireQty" />
+    <result column="is_trigger_pr" jdbcType="TINYINT" property="isTriggerPr" />
+    <result column="is_plan_approve" jdbcType="TINYINT" property="isPlanApprove" />
+    <result column="approve_state" jdbcType="TINYINT" property="approveState" />
+    <result column="approve_uid" jdbcType="INTEGER" property="approveUid" />
+    <result column="approved_at" jdbcType="TIMESTAMP" property="approvedAt" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="expired" jdbcType="TINYINT" property="expired" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="check_attr_state" jdbcType="BIT" property="checkAttrState" />
+    <result column="check_attr_uid" jdbcType="INTEGER" property="checkAttrUid" />
+    <result column="check_attr_time" jdbcType="CHAR" property="checkAttrTime" />
+    <result column="estimated_stock_quantity" jdbcType="INTEGER" property="estimatedStockQuantity" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    gid, jid, pr_sn, salesman, created_at, sku, station_code, sku_name, sku_state, logistics_id, 
+    available_qty, oversea_up_qty, oversea_ship_qty, sc_day, deviate_pcs, avg_weight_sale_pcs, 
+    avg_deliver_day, z, safe_stock_pcs, weight_sale_pcs, pre_day, point_pcs, supply_day, 
+    purchase_qty, expect_exhaust_date, bd, require_qty, is_trigger_pr, is_plan_approve, 
+    approve_state, approve_uid, approved_at, remark, expired, updated_at, check_attr_state, 
+    check_attr_uid, check_attr_time, estimated_stock_quantity
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from yibai_oversea_pr_list
+    where gid = #{gid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from yibai_oversea_pr_list
+    where gid = #{gid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yibai.plan.warehousing.dao.entity.YibaiOverseaPrList">
+    insert into yibai_oversea_pr_list (gid, jid, pr_sn, 
+      salesman, created_at, sku, 
+      station_code, sku_name, sku_state, 
+      logistics_id, available_qty, oversea_up_qty, 
+      oversea_ship_qty, sc_day, deviate_pcs, 
+      avg_weight_sale_pcs, avg_deliver_day, z, 
+      safe_stock_pcs, weight_sale_pcs, pre_day, 
+      point_pcs, supply_day, purchase_qty, 
+      expect_exhaust_date, bd, require_qty, 
+      is_trigger_pr, is_plan_approve, approve_state, 
+      approve_uid, approved_at, remark, 
+      expired, updated_at, check_attr_state, 
+      check_attr_uid, check_attr_time, estimated_stock_quantity
+      )
+    values (#{gid,jdbcType=VARCHAR}, #{jid,jdbcType=VARCHAR}, #{prSn,jdbcType=CHAR}, 
+      #{salesman,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, #{sku,jdbcType=VARCHAR}, 
+      #{stationCode,jdbcType=VARCHAR}, #{skuName,jdbcType=VARCHAR}, #{skuState,jdbcType=TINYINT}, 
+      #{logisticsId,jdbcType=TINYINT}, #{availableQty,jdbcType=INTEGER}, #{overseaUpQty,jdbcType=INTEGER}, 
+      #{overseaShipQty,jdbcType=INTEGER}, #{scDay,jdbcType=SMALLINT}, #{deviatePcs,jdbcType=DECIMAL}, 
+      #{avgWeightSalePcs,jdbcType=SMALLINT}, #{avgDeliverDay,jdbcType=DECIMAL}, #{z,jdbcType=DECIMAL}, 
+      #{safeStockPcs,jdbcType=SMALLINT}, #{weightSalePcs,jdbcType=SMALLINT}, #{preDay,jdbcType=SMALLINT}, 
+      #{pointPcs,jdbcType=SMALLINT}, #{supplyDay,jdbcType=SMALLINT}, #{purchaseQty,jdbcType=INTEGER}, 
+      #{expectExhaustDate,jdbcType=DATE}, #{bd,jdbcType=SMALLINT}, #{requireQty,jdbcType=INTEGER}, 
+      #{isTriggerPr,jdbcType=TINYINT}, #{isPlanApprove,jdbcType=TINYINT}, #{approveState,jdbcType=TINYINT}, 
+      #{approveUid,jdbcType=INTEGER}, #{approvedAt,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, 
+      #{expired,jdbcType=TINYINT}, #{updatedAt,jdbcType=TIMESTAMP}, #{checkAttrState,jdbcType=BIT}, 
+      #{checkAttrUid,jdbcType=INTEGER}, #{checkAttrTime,jdbcType=CHAR}, #{estimatedStockQuantity,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yibai.plan.warehousing.dao.entity.YibaiOverseaPrList">
+    insert into yibai_oversea_pr_list
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gid != null">
+        gid,
+      </if>
+      <if test="jid != null">
+        jid,
+      </if>
+      <if test="prSn != null">
+        pr_sn,
+      </if>
+      <if test="salesman != null">
+        salesman,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="sku != null">
+        sku,
+      </if>
+      <if test="stationCode != null">
+        station_code,
+      </if>
+      <if test="skuName != null">
+        sku_name,
+      </if>
+      <if test="skuState != null">
+        sku_state,
+      </if>
+      <if test="logisticsId != null">
+        logistics_id,
+      </if>
+      <if test="availableQty != null">
+        available_qty,
+      </if>
+      <if test="overseaUpQty != null">
+        oversea_up_qty,
+      </if>
+      <if test="overseaShipQty != null">
+        oversea_ship_qty,
+      </if>
+      <if test="scDay != null">
+        sc_day,
+      </if>
+      <if test="deviatePcs != null">
+        deviate_pcs,
+      </if>
+      <if test="avgWeightSalePcs != null">
+        avg_weight_sale_pcs,
+      </if>
+      <if test="avgDeliverDay != null">
+        avg_deliver_day,
+      </if>
+      <if test="z != null">
+        z,
+      </if>
+      <if test="safeStockPcs != null">
+        safe_stock_pcs,
+      </if>
+      <if test="weightSalePcs != null">
+        weight_sale_pcs,
+      </if>
+      <if test="preDay != null">
+        pre_day,
+      </if>
+      <if test="pointPcs != null">
+        point_pcs,
+      </if>
+      <if test="supplyDay != null">
+        supply_day,
+      </if>
+      <if test="purchaseQty != null">
+        purchase_qty,
+      </if>
+      <if test="expectExhaustDate != null">
+        expect_exhaust_date,
+      </if>
+      <if test="bd != null">
+        bd,
+      </if>
+      <if test="requireQty != null">
+        require_qty,
+      </if>
+      <if test="isTriggerPr != null">
+        is_trigger_pr,
+      </if>
+      <if test="isPlanApprove != null">
+        is_plan_approve,
+      </if>
+      <if test="approveState != null">
+        approve_state,
+      </if>
+      <if test="approveUid != null">
+        approve_uid,
+      </if>
+      <if test="approvedAt != null">
+        approved_at,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="expired != null">
+        expired,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="checkAttrState != null">
+        check_attr_state,
+      </if>
+      <if test="checkAttrUid != null">
+        check_attr_uid,
+      </if>
+      <if test="checkAttrTime != null">
+        check_attr_time,
+      </if>
+      <if test="estimatedStockQuantity != null">
+        estimated_stock_quantity,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gid != null">
+        #{gid,jdbcType=VARCHAR},
+      </if>
+      <if test="jid != null">
+        #{jid,jdbcType=VARCHAR},
+      </if>
+      <if test="prSn != null">
+        #{prSn,jdbcType=CHAR},
+      </if>
+      <if test="salesman != null">
+        #{salesman,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sku != null">
+        #{sku,jdbcType=VARCHAR},
+      </if>
+      <if test="stationCode != null">
+        #{stationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="skuName != null">
+        #{skuName,jdbcType=VARCHAR},
+      </if>
+      <if test="skuState != null">
+        #{skuState,jdbcType=TINYINT},
+      </if>
+      <if test="logisticsId != null">
+        #{logisticsId,jdbcType=TINYINT},
+      </if>
+      <if test="availableQty != null">
+        #{availableQty,jdbcType=INTEGER},
+      </if>
+      <if test="overseaUpQty != null">
+        #{overseaUpQty,jdbcType=INTEGER},
+      </if>
+      <if test="overseaShipQty != null">
+        #{overseaShipQty,jdbcType=INTEGER},
+      </if>
+      <if test="scDay != null">
+        #{scDay,jdbcType=SMALLINT},
+      </if>
+      <if test="deviatePcs != null">
+        #{deviatePcs,jdbcType=DECIMAL},
+      </if>
+      <if test="avgWeightSalePcs != null">
+        #{avgWeightSalePcs,jdbcType=SMALLINT},
+      </if>
+      <if test="avgDeliverDay != null">
+        #{avgDeliverDay,jdbcType=DECIMAL},
+      </if>
+      <if test="z != null">
+        #{z,jdbcType=DECIMAL},
+      </if>
+      <if test="safeStockPcs != null">
+        #{safeStockPcs,jdbcType=SMALLINT},
+      </if>
+      <if test="weightSalePcs != null">
+        #{weightSalePcs,jdbcType=SMALLINT},
+      </if>
+      <if test="preDay != null">
+        #{preDay,jdbcType=SMALLINT},
+      </if>
+      <if test="pointPcs != null">
+        #{pointPcs,jdbcType=SMALLINT},
+      </if>
+      <if test="supplyDay != null">
+        #{supplyDay,jdbcType=SMALLINT},
+      </if>
+      <if test="purchaseQty != null">
+        #{purchaseQty,jdbcType=INTEGER},
+      </if>
+      <if test="expectExhaustDate != null">
+        #{expectExhaustDate,jdbcType=DATE},
+      </if>
+      <if test="bd != null">
+        #{bd,jdbcType=SMALLINT},
+      </if>
+      <if test="requireQty != null">
+        #{requireQty,jdbcType=INTEGER},
+      </if>
+      <if test="isTriggerPr != null">
+        #{isTriggerPr,jdbcType=TINYINT},
+      </if>
+      <if test="isPlanApprove != null">
+        #{isPlanApprove,jdbcType=TINYINT},
+      </if>
+      <if test="approveState != null">
+        #{approveState,jdbcType=TINYINT},
+      </if>
+      <if test="approveUid != null">
+        #{approveUid,jdbcType=INTEGER},
+      </if>
+      <if test="approvedAt != null">
+        #{approvedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="expired != null">
+        #{expired,jdbcType=TINYINT},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkAttrState != null">
+        #{checkAttrState,jdbcType=BIT},
+      </if>
+      <if test="checkAttrUid != null">
+        #{checkAttrUid,jdbcType=INTEGER},
+      </if>
+      <if test="checkAttrTime != null">
+        #{checkAttrTime,jdbcType=CHAR},
+      </if>
+      <if test="estimatedStockQuantity != null">
+        #{estimatedStockQuantity,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yibai.plan.warehousing.dao.entity.YibaiOverseaPrList">
+    update yibai_oversea_pr_list
+    <set>
+      <if test="jid != null">
+        jid = #{jid,jdbcType=VARCHAR},
+      </if>
+      <if test="prSn != null">
+        pr_sn = #{prSn,jdbcType=CHAR},
+      </if>
+      <if test="salesman != null">
+        salesman = #{salesman,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sku != null">
+        sku = #{sku,jdbcType=VARCHAR},
+      </if>
+      <if test="stationCode != null">
+        station_code = #{stationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="skuName != null">
+        sku_name = #{skuName,jdbcType=VARCHAR},
+      </if>
+      <if test="skuState != null">
+        sku_state = #{skuState,jdbcType=TINYINT},
+      </if>
+      <if test="logisticsId != null">
+        logistics_id = #{logisticsId,jdbcType=TINYINT},
+      </if>
+      <if test="availableQty != null">
+        available_qty = #{availableQty,jdbcType=INTEGER},
+      </if>
+      <if test="overseaUpQty != null">
+        oversea_up_qty = #{overseaUpQty,jdbcType=INTEGER},
+      </if>
+      <if test="overseaShipQty != null">
+        oversea_ship_qty = #{overseaShipQty,jdbcType=INTEGER},
+      </if>
+      <if test="scDay != null">
+        sc_day = #{scDay,jdbcType=SMALLINT},
+      </if>
+      <if test="deviatePcs != null">
+        deviate_pcs = #{deviatePcs,jdbcType=DECIMAL},
+      </if>
+      <if test="avgWeightSalePcs != null">
+        avg_weight_sale_pcs = #{avgWeightSalePcs,jdbcType=SMALLINT},
+      </if>
+      <if test="avgDeliverDay != null">
+        avg_deliver_day = #{avgDeliverDay,jdbcType=DECIMAL},
+      </if>
+      <if test="z != null">
+        z = #{z,jdbcType=DECIMAL},
+      </if>
+      <if test="safeStockPcs != null">
+        safe_stock_pcs = #{safeStockPcs,jdbcType=SMALLINT},
+      </if>
+      <if test="weightSalePcs != null">
+        weight_sale_pcs = #{weightSalePcs,jdbcType=SMALLINT},
+      </if>
+      <if test="preDay != null">
+        pre_day = #{preDay,jdbcType=SMALLINT},
+      </if>
+      <if test="pointPcs != null">
+        point_pcs = #{pointPcs,jdbcType=SMALLINT},
+      </if>
+      <if test="supplyDay != null">
+        supply_day = #{supplyDay,jdbcType=SMALLINT},
+      </if>
+      <if test="purchaseQty != null">
+        purchase_qty = #{purchaseQty,jdbcType=INTEGER},
+      </if>
+      <if test="expectExhaustDate != null">
+        expect_exhaust_date = #{expectExhaustDate,jdbcType=DATE},
+      </if>
+      <if test="bd != null">
+        bd = #{bd,jdbcType=SMALLINT},
+      </if>
+      <if test="requireQty != null">
+        require_qty = #{requireQty,jdbcType=INTEGER},
+      </if>
+      <if test="isTriggerPr != null">
+        is_trigger_pr = #{isTriggerPr,jdbcType=TINYINT},
+      </if>
+      <if test="isPlanApprove != null">
+        is_plan_approve = #{isPlanApprove,jdbcType=TINYINT},
+      </if>
+      <if test="approveState != null">
+        approve_state = #{approveState,jdbcType=TINYINT},
+      </if>
+      <if test="approveUid != null">
+        approve_uid = #{approveUid,jdbcType=INTEGER},
+      </if>
+      <if test="approvedAt != null">
+        approved_at = #{approvedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="expired != null">
+        expired = #{expired,jdbcType=TINYINT},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkAttrState != null">
+        check_attr_state = #{checkAttrState,jdbcType=BIT},
+      </if>
+      <if test="checkAttrUid != null">
+        check_attr_uid = #{checkAttrUid,jdbcType=INTEGER},
+      </if>
+      <if test="checkAttrTime != null">
+        check_attr_time = #{checkAttrTime,jdbcType=CHAR},
+      </if>
+      <if test="estimatedStockQuantity != null">
+        estimated_stock_quantity = #{estimatedStockQuantity,jdbcType=INTEGER},
+      </if>
+    </set>
+    where gid = #{gid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yibai.plan.warehousing.dao.entity.YibaiOverseaPrList">
+    update yibai_oversea_pr_list
+    set jid = #{jid,jdbcType=VARCHAR},
+      pr_sn = #{prSn,jdbcType=CHAR},
+      salesman = #{salesman,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      sku = #{sku,jdbcType=VARCHAR},
+      station_code = #{stationCode,jdbcType=VARCHAR},
+      sku_name = #{skuName,jdbcType=VARCHAR},
+      sku_state = #{skuState,jdbcType=TINYINT},
+      logistics_id = #{logisticsId,jdbcType=TINYINT},
+      available_qty = #{availableQty,jdbcType=INTEGER},
+      oversea_up_qty = #{overseaUpQty,jdbcType=INTEGER},
+      oversea_ship_qty = #{overseaShipQty,jdbcType=INTEGER},
+      sc_day = #{scDay,jdbcType=SMALLINT},
+      deviate_pcs = #{deviatePcs,jdbcType=DECIMAL},
+      avg_weight_sale_pcs = #{avgWeightSalePcs,jdbcType=SMALLINT},
+      avg_deliver_day = #{avgDeliverDay,jdbcType=DECIMAL},
+      z = #{z,jdbcType=DECIMAL},
+      safe_stock_pcs = #{safeStockPcs,jdbcType=SMALLINT},
+      weight_sale_pcs = #{weightSalePcs,jdbcType=SMALLINT},
+      pre_day = #{preDay,jdbcType=SMALLINT},
+      point_pcs = #{pointPcs,jdbcType=SMALLINT},
+      supply_day = #{supplyDay,jdbcType=SMALLINT},
+      purchase_qty = #{purchaseQty,jdbcType=INTEGER},
+      expect_exhaust_date = #{expectExhaustDate,jdbcType=DATE},
+      bd = #{bd,jdbcType=SMALLINT},
+      require_qty = #{requireQty,jdbcType=INTEGER},
+      is_trigger_pr = #{isTriggerPr,jdbcType=TINYINT},
+      is_plan_approve = #{isPlanApprove,jdbcType=TINYINT},
+      approve_state = #{approveState,jdbcType=TINYINT},
+      approve_uid = #{approveUid,jdbcType=INTEGER},
+      approved_at = #{approvedAt,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      expired = #{expired,jdbcType=TINYINT},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      check_attr_state = #{checkAttrState,jdbcType=BIT},
+      check_attr_uid = #{checkAttrUid,jdbcType=INTEGER},
+      check_attr_time = #{checkAttrTime,jdbcType=CHAR},
+      estimated_stock_quantity = #{estimatedStockQuantity,jdbcType=INTEGER}
+    where gid = #{gid,jdbcType=VARCHAR}
+  </update>
+</mapper>
