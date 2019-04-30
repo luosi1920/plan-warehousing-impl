@@ -1,6 +1,6 @@
 package com.yibai.plan.warehousing.dao.entity;
 
-public class TestData {
+public class User2 {
     private Integer id;
 
     private String name;
